@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 
 class TextAreaCard extends StatefulWidget {
-  const TextAreaCard({super.key, required this.textEditingController, required this.onChanged});
+  const TextAreaCard({super.key, 
+    required this.textEditingController,
+    required this.onChanged,
+  });
+
   final TextEditingController textEditingController;
   final VoidCallback onChanged;
+
   @override
   State<TextAreaCard> createState() => _TextAreaCardState();
 }
@@ -16,7 +21,6 @@ class _TextAreaCardState extends State<TextAreaCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -30,17 +34,18 @@ class _TextAreaCardState extends State<TextAreaCard> {
           ],
           shape: BoxShape.rectangle,
         ),
-        child: 
-        TextField(
+        child: TextField(
           controller: widget.textEditingController,
-          onChanged:(value)=> widget.onChanged,
+          onChanged: (value) {
+            widget.onChanged();
+          },
           maxLines: 3,
           decoration: InputDecoration(
             hintText: "Введите заметку",
-            border: OutlineInputBorder(borderSide: BorderSide.none)
+            border: OutlineInputBorder(borderSide: BorderSide.none),
           ),
-        )
-        )
-          );
+        ),
+      ),
+    );
   }
 }

@@ -99,12 +99,14 @@ class _MoodDairyState extends State<MoodDairy> {
              SizedBox(height: 25,),
             Text("Заметки", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
             SizedBox(height: 15,),
-            TextAreaCard(textEditingController: textEditingController,
-            onChanged: () {
-              setState(() {
-                debugPrint("dd");
-              });
-            },),
+             TextAreaCard(
+                textEditingController: textEditingController,
+                onChanged: () {
+                  setState(() {
+                    debugPrint("Text changed");
+                  });
+                },
+              ),
             SizedBox(height: 15,),
             Center(child: SizedBox(width: MediaQuery.of(context).size.width*0.7, child: 
             ElevatedButton(
