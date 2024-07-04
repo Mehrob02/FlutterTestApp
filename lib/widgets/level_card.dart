@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_test_app/services/assets_path_converter.dart';
+import 'package:provider/provider.dart';
 
 class LevelCard extends StatefulWidget {
   const LevelCard({super.key, required this.rightText, required this.leftText, required this.onClick, required this.isSet, required this.currentValue});
@@ -23,6 +25,7 @@ class _LevelCardState extends State<LevelCard> {
   }
   @override
   Widget build(BuildContext context) {
+    final pathConverter = Provider.of<AssetsPathConverter>(context);
     return  Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -52,12 +55,12 @@ class _LevelCardState extends State<LevelCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SvgPicture.asset("rect.svg"),
-                    SvgPicture.asset("rect.svg"),
-                    SvgPicture.asset("rect.svg"),
-                    SvgPicture.asset("rect.svg"),
-                    SvgPicture.asset("rect.svg"),
-                    SvgPicture.asset("rect.svg"),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
+                    SvgPicture.asset(pathConverter.definaPath("rect.svg")),
                   ],
                 ),
               ),

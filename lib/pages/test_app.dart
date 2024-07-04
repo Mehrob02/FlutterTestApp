@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test_app/pages/date_picker.dart';
 import 'package:flutter_test_app/pages/mood_dairy.dart';
 import 'package:flutter_test_app/pages/statistics.dart';
+import 'package:flutter_test_app/services/assets_path_converter.dart';
 import 'package:flutter_test_app/services/month_converter.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class _TestAppState extends State<TestApp> {
   @override
   Widget build(BuildContext context) {
     final monthConverter = Provider.of<MonthConverter>(context);
+     final pathConverter = Provider.of<AssetsPathConverter>(context);
     return SafeArea(
       child: 
     Scaffold(
@@ -85,7 +87,7 @@ class _TestAppState extends State<TestApp> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: SvgPicture.asset(kIsWeb? "icons.svg":"assets/icons.svg", fit: BoxFit.contain,),
+                                  child: SvgPicture.asset(pathConverter.definaPath("Icons.svg"), fit: BoxFit.contain,),
                                 ),
                                 Text("Дневник настроения", style: TextStyle(color: Colors.white),),
                               ],
@@ -106,7 +108,7 @@ class _TestAppState extends State<TestApp> {
                                 children: [
                                   Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: SvgPicture.asset(kIsWeb? "Icons_statistics.svg":"assets/Icons_statistics.svg", fit: BoxFit.contain, color: Colors.white,),
+                                  child: SvgPicture.asset(pathConverter.definaPath("Icons_statistics.svg"), fit: BoxFit.contain, color: Colors.white,),
                                 ),
                                   Text("Statistics",style: TextStyle(color: Colors.white),),
                                 ],
@@ -135,7 +137,7 @@ class _TestAppState extends State<TestApp> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: SvgPicture.asset(kIsWeb? "icons.svg":"assets/icons.svg", fit: BoxFit.contain,),
+                                  child: SvgPicture.asset(pathConverter.definaPath("Icons.svg") , fit: BoxFit.contain,),
                                 ),
                                 Text("Дневник настроения",style: TextStyle(color: Colors.white),),
                               ],
@@ -144,7 +146,7 @@ class _TestAppState extends State<TestApp> {
                                 children: [
                                   Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: SvgPicture.asset(kIsWeb? "Icons_statistics.svg":"assets/Icons_statistics.svg", fit: BoxFit.contain, color: Colors.white,),
+                                  child: SvgPicture.asset(pathConverter.definaPath("Icons_statistics.svg"), fit: BoxFit.contain, color: Colors.white,),
                                 ),
                                   Text("Statistics",style: TextStyle(color: Colors.white),),
                                 ],

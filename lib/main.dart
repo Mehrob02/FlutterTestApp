@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test_app/pages/test_app.dart';
+import 'package:flutter_test_app/services/assets_path_converter.dart';
 import 'package:flutter_test_app/services/month_converter.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ void main() {
       MultiProvider(
         providers: [
           Provider<MonthConverter>(create: (_) => MonthConverter()),
+          Provider<AssetsPathConverter>(create: (_) => AssetsPathConverter()),
         ],
         child: MaterialApp(
         debugShowCheckedModeBanner: false,

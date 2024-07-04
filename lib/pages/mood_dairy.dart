@@ -5,6 +5,9 @@ import 'package:flutter_test_app/widgets/block_button.dart';
 import 'package:flutter_test_app/widgets/level_card.dart';
 import 'package:flutter_test_app/widgets/mood_card.dart';
 import 'package:flutter_test_app/widgets/text_area.dart';
+import 'package:provider/provider.dart';
+
+import '../services/assets_path_converter.dart';
 
 class MoodDairy extends StatefulWidget {
   const MoodDairy({super.key});
@@ -34,6 +37,7 @@ class _MoodDairyState extends State<MoodDairy> {
   }
   @override
   Widget build(BuildContext context) {
+     final pathConverter = Provider.of<AssetsPathConverter>(context);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 18),
@@ -47,19 +51,19 @@ class _MoodDairyState extends State<MoodDairy> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  MoodCard(imageAsset:"happy.png",text:"Радость", onClick: () { cardClicked(1); }, isSelected: (selectedCard==1)?true:false,),
-                  MoodCard(imageAsset:"fear.png",text:"Страх", onClick: () {cardClicked(2);  },isSelected: (selectedCard==2)?true:false,),
-                  MoodCard(imageAsset:"anger.png",text:"Бешенство", onClick: () { cardClicked(3); },isSelected: (selectedCard==3)?true:false,),
-                  MoodCard(imageAsset:"sad.png",text:"Грусть", onClick: () { cardClicked(4); },isSelected: (selectedCard==4)?true:false,),
-                  MoodCard(imageAsset:"calm.png",text:"Спокойствие", onClick: () { cardClicked(5); },isSelected: (selectedCard==5)?true:false,),
-                  MoodCard(imageAsset:"strong.png",text:"Сила", onClick: () { cardClicked(6); }, isSelected: (selectedCard==6)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("happy.png"),text:"Радость", onClick: () { cardClicked(1); }, isSelected: (selectedCard==1)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("fear.png"),text:"Страх", onClick: () {cardClicked(2);  },isSelected: (selectedCard==2)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("anger.png"),text:"Бешенство", onClick: () { cardClicked(3); },isSelected: (selectedCard==3)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("sad.png"),text:"Грусть", onClick: () { cardClicked(4); },isSelected: (selectedCard==4)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("calm.png"),text:"Спокойствие", onClick: () { cardClicked(5); },isSelected: (selectedCard==5)?true:false,),
+                  MoodCard(imageAsset:pathConverter.definaPath("strong.png"),text:"Сила", onClick: () { cardClicked(6); }, isSelected: (selectedCard==6)?true:false,),
                 ],
               ),
             ),
             SizedBox(height: 5,),
            if(selectedCard!=null&&selectedCard==1) Wrap(
-            spacing: 8.0,
-            runSpacing: 8.0,
+            spacing: 6.0,
+            runSpacing: 6.0,
               children: [
                 BlockButton(blockNumber: 1, onClick:()=> blockClicked(1), text: "Возбуждение", selecteBlock: selectedBlock),
                 BlockButton(blockNumber: 2, onClick:()=> blockClicked(2), text: "Восторг", selecteBlock: selectedBlock),
@@ -76,7 +80,7 @@ class _MoodDairyState extends State<MoodDairy> {
             ),
             SizedBox(height: 10,),
             Text("Уровень стресса", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
-            SizedBox(height: 17,),
+            SizedBox(height: 15,),
             LevelCard(rightText: "Низкий", leftText: "Высокий", onClick: (double value){
               setState(() {
                 isStressLevelSet=true;
@@ -85,7 +89,7 @@ class _MoodDairyState extends State<MoodDairy> {
             }, isSet: isStressLevelSet, currentValue: stressLevel,),
             SizedBox(height: 25,),
             Text("Самооценка", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
-            SizedBox(height: 17,),
+            SizedBox(height: 15,),
             LevelCard(rightText: "Неуверенность", leftText: "Уверенность", onClick: (double value){
               setState(() {
                 isSelfAssessmentLevelSet=true;
@@ -94,14 +98,14 @@ class _MoodDairyState extends State<MoodDairy> {
             }, isSet: isSelfAssessmentLevelSet, currentValue: selfAssessmentLevel,),
              SizedBox(height: 25,),
             Text("Заметки", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
-            SizedBox(height: 17,),
+            SizedBox(height: 15,),
             TextAreaCard(textEditingController: textEditingController,
             onChanged: () {
               setState(() {
                 debugPrint("dd");
               });
             },),
-            SizedBox(height: 17,),
+            SizedBox(height: 15,),
             Center(child: SizedBox(width: MediaQuery.of(context).size.width*0.7, child: 
             ElevatedButton(
               style: ButtonStyle(
@@ -118,6 +122,8 @@ class _MoodDairyState extends State<MoodDairy> {
                   setState(() {
                     selectedCard=null;
                     textEditingController.clear();
+                    stressLevel=6.0;
+                    selfAssessmentLevel=6.0;
                     isSelfAssessmentLevelSet=false;
                     isStressLevelSet=false;
                   });
