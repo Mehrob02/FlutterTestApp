@@ -20,7 +20,7 @@ class _LevelCardState extends State<LevelCard> {
   double currentValue = 0;
   @override
   void initState() {
-    currentValue= widget.currentValue;
+    currentValue= widget.isSet? widget.currentValue: 6.0;
     super.initState();
   }
   @override
@@ -76,7 +76,7 @@ class _LevelCardState extends State<LevelCard> {
                       overlayColor: WidgetStatePropertyAll(Colors.white),
                       inactiveColor: Theme.of(context).colorScheme.onSecondary, 
                       secondaryActiveColor: Colors.green,
-                      value: currentValue,
+                      value: widget.currentValue,
                     min: 0,
                     max: 12,
                      onChanged:(value) {

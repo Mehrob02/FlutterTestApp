@@ -63,7 +63,7 @@ class _MoodDairyState extends State<MoodDairy> {
             SizedBox(height: 5,),
            if(selectedCard!=null&&selectedCard==1) Wrap(
             spacing: 6.0,
-            runSpacing: 6.0,
+            runSpacing: 2.0,
               children: [
                 BlockButton(blockNumber: 1, onClick:()=> blockClicked(1), text: "Возбуждение", selecteBlock: selectedBlock),
                 BlockButton(blockNumber: 2, onClick:()=> blockClicked(2), text: "Восторг", selecteBlock: selectedBlock),
@@ -81,7 +81,7 @@ class _MoodDairyState extends State<MoodDairy> {
             SizedBox(height: 10,),
             Text("Уровень стресса", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
             SizedBox(height: 15,),
-            LevelCard(rightText: "Низкий", leftText: "Высокий", onClick: (double value){
+            LevelCard(rightText: "Высокий", leftText: "Низкий", onClick: (double value){
               setState(() {
                 isStressLevelSet=true;
                 stressLevel=value;
@@ -90,7 +90,7 @@ class _MoodDairyState extends State<MoodDairy> {
             SizedBox(height: 25,),
             Text("Самооценка", style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontWeight: FontWeight.bold, fontSize: 18),),
             SizedBox(height: 15,),
-            LevelCard(rightText: "Неуверенность", leftText: "Уверенность", onClick: (double value){
+            LevelCard(rightText: "Уверенность", leftText: "Неуверенность", onClick: (double value){
               setState(() {
                 isSelfAssessmentLevelSet=true;
                 selfAssessmentLevel=value;
